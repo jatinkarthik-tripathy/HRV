@@ -19,14 +19,7 @@ y_test = test_df["condition"]
 
 print(X_train.shape)
 
-#minkowski
-knn = KNeighborsClassifier()
+knn = KNeighborsClassifier(metric='mahalanobis',
+                           metric_params={'V': np.cov(X_train)})
 knn.fit(X_train, y_train)
-
-print(f"acc:{knn.score(X_test, y_test)}")
-
-#manhattan
-knn = KNeighborsClassifier(metric="manhattan")
-knn.fit(X_train, y_train)
-
 print(f"acc:{knn.score(X_test, y_test)}")
